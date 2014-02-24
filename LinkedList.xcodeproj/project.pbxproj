@@ -21,6 +21,10 @@
 		894C269018BBEC200066ADB5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 894C267218BBEC1F0066ADB5 /* UIKit.framework */; };
 		894C269818BBEC200066ADB5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 894C269618BBEC200066ADB5 /* InfoPlist.strings */; };
 		894C269A18BBEC200066ADB5 /* LinkedListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 894C269918BBEC200066ADB5 /* LinkedListTests.m */; };
+		894C26A518BBEC320066ADB5 /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = 894C26A418BBEC320066ADB5 /* Node.m */; };
+		894C26A818BBED830066ADB5 /* LinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 894C26A718BBED830066ADB5 /* LinkedList.m */; };
+		894C26AB18BBFA190066ADB5 /* BinaryTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 894C26AA18BBFA190066ADB5 /* BinaryTreeNode.m */; };
+		894C26AE18BBFD1D0066ADB5 /* BinaryTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 894C26AD18BBFD1D0066ADB5 /* BinaryTree.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,14 @@
 		894C269518BBEC200066ADB5 /* LinkedListTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LinkedListTests-Info.plist"; sourceTree = "<group>"; };
 		894C269718BBEC200066ADB5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		894C269918BBEC200066ADB5 /* LinkedListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LinkedListTests.m; sourceTree = "<group>"; };
+		894C26A318BBEC320066ADB5 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Node.h; path = ../Node.h; sourceTree = "<group>"; };
+		894C26A418BBEC320066ADB5 /* Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Node.m; path = ../Node.m; sourceTree = "<group>"; };
+		894C26A618BBED830066ADB5 /* LinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedList.h; sourceTree = SOURCE_ROOT; };
+		894C26A718BBED830066ADB5 /* LinkedList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedList.m; sourceTree = SOURCE_ROOT; };
+		894C26A918BBFA190066ADB5 /* BinaryTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BinaryTreeNode.h; path = ../BinaryTreeNode.h; sourceTree = "<group>"; };
+		894C26AA18BBFA190066ADB5 /* BinaryTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BinaryTreeNode.m; path = ../BinaryTreeNode.m; sourceTree = "<group>"; };
+		894C26AC18BBFD1D0066ADB5 /* BinaryTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BinaryTree.h; path = ../BinaryTree.h; sourceTree = "<group>"; };
+		894C26AD18BBFD1D0066ADB5 /* BinaryTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BinaryTree.m; path = ../BinaryTree.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +124,14 @@
 		894C267418BBEC1F0066ADB5 /* LinkedList */ = {
 			isa = PBXGroup;
 			children = (
+				894C26AC18BBFD1D0066ADB5 /* BinaryTree.h */,
+				894C26AD18BBFD1D0066ADB5 /* BinaryTree.m */,
+				894C26A918BBFA190066ADB5 /* BinaryTreeNode.h */,
+				894C26AA18BBFA190066ADB5 /* BinaryTreeNode.m */,
+				894C26A618BBED830066ADB5 /* LinkedList.h */,
+				894C26A718BBED830066ADB5 /* LinkedList.m */,
+				894C26A318BBEC320066ADB5 /* Node.h */,
+				894C26A418BBEC320066ADB5 /* Node.m */,
 				894C267D18BBEC1F0066ADB5 /* SFAppDelegate.h */,
 				894C267E18BBEC1F0066ADB5 /* SFAppDelegate.m */,
 				894C268018BBEC200066ADB5 /* Main.storyboard */,
@@ -253,6 +273,10 @@
 				894C267B18BBEC1F0066ADB5 /* main.m in Sources */,
 				894C268518BBEC200066ADB5 /* SFViewController.m in Sources */,
 				894C267F18BBEC1F0066ADB5 /* SFAppDelegate.m in Sources */,
+				894C26A818BBED830066ADB5 /* LinkedList.m in Sources */,
+				894C26AB18BBFA190066ADB5 /* BinaryTreeNode.m in Sources */,
+				894C26AE18BBFD1D0066ADB5 /* BinaryTree.m in Sources */,
+				894C26A518BBEC320066ADB5 /* Node.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
