@@ -17,16 +17,32 @@
         self.currentNodeWereLookingAt = self.rootNode;
         while (self.currentNodeWereLookingAt) {
             if (node.value > self.currentNodeWereLookingAt.value) {
-                self.currentNodeWereLookingAt = self.currentNodeWereLookingAt.biggerNode;
+                if (self.currentNodeWereLookingAt.biggerNode) {
+                    self.currentNodeWereLookingAt = self.currentNodeWereLookingAt.biggerNode;
+                }
+                else
+                {
+                    self.currentNodeWereLookingAt.biggerNode = node;
+                    self.currentNodeWereLookingAt = nil;
+                }
             }
             else if (node.value < self.currentNodeWereLookingAt.value) {
-                self.currentNodeWereLookingAt = self.currentNodeWereLookingAt.smallerNode;
+                if (self.currentNodeWereLookingAt.smallerNode) {
+                    self.currentNodeWereLookingAt = self.currentNodeWereLookingAt.smallerNode;
+                }
+                else
+                {
+                    self.currentNodeWereLookingAt.smallerNode = node;
+                    self.currentNodeWereLookingAt = nil;
+                }
+                
             }
             else {
                 //Do nothing because it is the same value
             }
         }
-        
+        //
+        self.currentNodeWereLookingAt.value = node.value;
         
     }
     

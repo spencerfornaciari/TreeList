@@ -63,6 +63,16 @@
     BinaryTreeNode *nodeNine = [[BinaryTreeNode alloc] initWithValue:37];
     BinaryTreeNode *nodeTen = [[BinaryTreeNode alloc] initWithValue:52];
     
+    [self.bestTree addNodeToTree:nodeOne];
+    [self.bestTree addNodeToTree:nodeTen];
+    [self.bestTree addNodeToTree:nodeFive];
+    [self.bestTree addNodeToTree:nodeFour];
+    [self.bestTree addNodeToTree:nodeSeven];
+    [self.bestTree addNodeToTree:nodeSix];
+    [self.bestTree addNodeToTree:nodeThree];
+    [self.bestTree addNodeToTree:nodeTwo];
+    [self.bestTree addNodeToTree:nodeNine];
+    [self.bestTree addNodeToTree:nodeEight];
     
 	// Do any additional setup after loading the view, typically from a nib.
 }
