@@ -74,6 +74,10 @@
     [self.bestTree addNodeToTree:nodeNine];
     [self.bestTree addNodeToTree:nodeEight];
     
+    BOOL checkValue = [self.bestTree doesValueExistInTree:37];
+    
+    NSLog(@"%hhd", checkValue);
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

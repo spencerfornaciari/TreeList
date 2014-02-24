@@ -53,11 +53,13 @@
 
 -(BOOL)doesValueExistInTree:(NSInteger)valueToTest
 {
+    int steps = 0;
     self.currentNodeWereLookingAt = self.rootNode;
     while (self.currentNodeWereLookingAt.value != valueToTest) {
         if (valueToTest > self.currentNodeWereLookingAt.value) {
             if (self.currentNodeWereLookingAt.biggerNode) {
                 self.currentNodeWereLookingAt = self.currentNodeWereLookingAt.biggerNode;
+                steps++;
             }
             else
             {
@@ -67,6 +69,7 @@
         else if (valueToTest < self.currentNodeWereLookingAt.value) {
             if (self.currentNodeWereLookingAt.smallerNode) {
                 self.currentNodeWereLookingAt = self.currentNodeWereLookingAt.smallerNode;
+                steps++;
             }
             else
             {
@@ -80,6 +83,7 @@
         }
     }
     
+    NSLog(@"%d", steps);
     return TRUE;
 }
 
