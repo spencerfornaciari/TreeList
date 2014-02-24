@@ -14,6 +14,7 @@
 @property (nonatomic) BinaryTreeNode *rootNode, *currentNodeWereLookingAt;
 
 -(void)addNodeToTree:(BinaryTreeNode *)node;
+-(BOOL)doesValueExistInTree:(NSInteger)valueToTest;
 
 -(NSString *)description;
 

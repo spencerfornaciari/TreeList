@@ -51,6 +51,39 @@
     }
 }
 
+-(BOOL)doesValueExistInTree:(NSInteger)valueToTest
+{
+    self.currentNodeWereLookingAt = self.rootNode;
+    while (self.currentNodeWereLookingAt.value != valueToTest) {
+        if (valueToTest > self.currentNodeWereLookingAt.value) {
+            if (self.currentNodeWereLookingAt.biggerNode) {
+                self.currentNodeWereLookingAt = self.currentNodeWereLookingAt.biggerNode;
+            }
+            else
+            {
+                return FALSE;
+            }
+        }
+        else if (valueToTest < self.currentNodeWereLookingAt.value) {
+            if (self.currentNodeWereLookingAt.smallerNode) {
+                self.currentNodeWereLookingAt = self.currentNodeWereLookingAt.smallerNode;
+            }
+            else
+            {
+                return FALSE;
+            }
+            
+        }
+        else {
+            //Do nothing because it is the same value
+            return TRUE;
+        }
+    }
+    
+    return TRUE;
+}
+
+
 -(NSString *)description
 {
     
