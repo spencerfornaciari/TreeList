@@ -96,10 +96,10 @@ const BOOL DEMO_RADIX_SORT = TRUE;
     }
     else if (DEMO_RADIX_SORT)
     {
-//        self.rawData = [[NSMutableArray alloc] initWithArray:@[@4, @32, @76, @53, @943, @2, @632, @8, @242]];
-        self.rawData = [[NSMutableArray alloc] initWithArray:@[@104, @302, @706, @503, @909, @205, @606, @808, @401]];
+        self.rawData = [[NSMutableArray alloc] initWithArray:@[@4, @32, @76, @53, @943, @2, @632, @8, @242]];
+//        self.rawData = [[NSMutableArray alloc] initWithArray:@[@104, @302, @706, @503, @909, @205, @606, @808, @401, @1001, @15005]];
 
-        [self printArray:self.rawData];
+      //  [self printArray:self.rawData];
         [self radixSort:self.rawData];
        
         
@@ -113,6 +113,8 @@ const BOOL DEMO_RADIX_SORT = TRUE;
 {
     // Blank Array
     [self findMaxSize:array];
+    self.count++;
+
     NSMutableArray *radixArray = [[NSMutableArray alloc] init];
     
     for(int i=0; i<10; i++)
@@ -120,34 +122,47 @@ const BOOL DEMO_RADIX_SORT = TRUE;
         radixArray[i] = [[LinkedList alloc] init];
     }
     
+//    NSNumber *five5 = @505;
+//    
+//    int five  = (five5.integerValue % 1000) / 100;
+//    NSLog(@"Five: %d", five);
+    
     for(NSNumber *num in array)
     {
-        int index = (num.integerValue % m)/ n;
+//        NSLog(@"Number: %d, M:%d, N:%d", num.integerValue, m, n);
+        int index = (num.integerValue % m) / n;
+//        NSLog(@"Index: %f", floor (index));
         Node *newNode = [[Node alloc] initWithValue:num.integerValue];
         LinkedList *indexList = radixArray[index];
         
         // This is where the node is finally assigned at the end
         [indexList addNodeToBackOfList:newNode];
-        indexList.count++;
     }
     
-    NSMutableArray *newSorted = [NSMutableArray new];
+    self.storedRadixArray = [NSMutableArray new];
    
     for (int i = 0; i < 10; i++ ) {
         LinkedList *list = radixArray[i];
         Node *currentNode = list.firstNode;
         
         while (currentNode) {
-            [newSorted addObject:[NSNumber numberWithInt:currentNode.value]];
+            [self.storedRadixArray addObject:[NSNumber numberWithInt:currentNode.value]];
             currentNode = currentNode.nextNode;
         }
         
     }
+    NSLog(@"Pass #%d", self.count);
+    //NSLog(@"%@", newSorted);
+    n *= 10;
+    m *= 10;
     
-    self.count++;
-    if (self.count < self.maxSize - 2) {
-        [self radixSort:newSorted];
-        
+    while (self.count < self.maxSize) {
+        [self radixSort:self.storedRadixArray];
+        NSLog(@"Pass #%d", self.count);
+        //NSLog(@"%@", newSorted);
+    }
+    
+    
 //        for(int j=1; j<10; j++)
 //        {
 //            if([radixArray[j] firstNode])
@@ -160,11 +175,11 @@ const BOOL DEMO_RADIX_SORT = TRUE;
 //                
 //            }
 //        }
-    }
+//    }
     
    
-    NSLog(@"Sorted");
-    [self printArray:newSorted];
+//    NSLog(@"Sorted");
+//    [self printArray:newSorted];
 
 //    if ([radixArray[0] count] == self.rawData.count) {
 //        self.storedRadixArray = newSorted;
@@ -204,7 +219,7 @@ const BOOL DEMO_RADIX_SORT = TRUE;
         }
     }
     
-    NSLog(@"Max size: %d", self.maxSize);
+//    NSLog(@"Max size: %d", self.maxSize);
 }
 
 -(void)printArray:(NSMutableArray*)array{
