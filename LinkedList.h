@@ -12,8 +12,10 @@
 @interface LinkedList : NSObject
 
 @property (nonatomic) Node *firstNode;
+@property (nonatomic) int count;
 
 -(void)addNodeToFrontOfList:(Node *)newNode;
+-(void)addNodeToBackOfList:(Node *)newNode;
 -(void)removeNodeFromFrontOfList;
 
 @end

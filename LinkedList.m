@@ -30,6 +30,28 @@
     }
     
 }
+
+-(void)addNodeToBackOfList:(Node *)newNode
+{
+    
+    Node *currentNode = self.firstNode;
+    if (!self.firstNode) {
+        self.firstNode = newNode;
+    }
+    else
+    {
+        while (currentNode) {
+            if (currentNode.nextNode) {
+                currentNode = currentNode.nextNode;
+            } else {
+            currentNode.nextNode = newNode;
+                break;
+        }
+        }
+    }
+    
+}
+
 -(void)removeNodeFromFrontOfList
 {
    
