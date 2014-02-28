@@ -96,13 +96,11 @@ const BOOL DEMO_RADIX_SORT = TRUE;
     }
     else if (DEMO_RADIX_SORT)
     {
-//        self.rawData = [[NSMutableArray alloc] initWithArray:@[@4, @32, @76, @53, @943, @2, @632, @8, @242]];
-        self.rawData = [[NSMutableArray alloc] initWithArray:@[@104, @306, @706, @503, @909, @205, @606, @808, @201, @1001, @15005]];
-
-      //  [self printArray:self.rawData];
-        [self radixSort:self.rawData];
-       
+        self.rawData = [[NSMutableArray alloc] initWithArray:@[@104, @306, @706, @503, @909, @205, @606, @808, @201, @1001, @15005, @4, @32, @76, @53, @943, @2, @632, @8, @242, @465, @1232, @1745, @1228, @6820, @9280, @9081, @2298, @5416, @180, @3216, @624, @5703, @1547, @5420, @5668, @5877, @1394, @5878, @2066, @8827, @972, @448, @518, @697, @931, @301, @671, @54, @506, @280, @121, @628, @380, @60, @673, @105, @953, @316, @207, @304, @227, @520, @338, @780, @857, @812, @999, @681, @935, @821, @20, @72, @95, @18, @19, @94, @37, @77, @46, @67, @32, @90, @52, @49, @1, @58, @50, @91, @92, @8]];
+        [self findMaxSize:self.rawData];
+        [self printArray:self.rawData];
         
+        [self radixSort:self.rawData];
         [self printArray:self.storedRadixArray];
     }
 
@@ -111,7 +109,6 @@ const BOOL DEMO_RADIX_SORT = TRUE;
 
 -(void)radixSort:(NSMutableArray *)array
 {
-    [self findMaxSize:array];
     self.count++;
 
     // Blank Array
@@ -151,9 +148,7 @@ const BOOL DEMO_RADIX_SORT = TRUE;
     
     if (self.count < self.maxSize) {
         [self radixSort:self.storedRadixArray];
-
     }
-    
 }
 
 -(void)findMaxSize:(NSMutableArray *)array
