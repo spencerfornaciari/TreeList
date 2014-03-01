@@ -106,7 +106,8 @@ const BOOL DEMO_MERGE_SORT = TRUE;
         [self radixSort:self.rawData];
         [self printArray:self.storedRadixArray];
     } else if (DEMO_MERGE_SORT) {
-        NSMutableArray* theArray = [NSMutableArray arrayWithArray:@[@-4,@7,@-9,@1,@0,@5,@5,@3,@3,@6,@8,@11, @20, @15, @227, @27, @21]];
+//        NSMutableArray* theArray = [NSMutableArray arrayWithArray:@[@-4,@7,@-9,@1,@0,@5,@5,@3,@3,@6,@8,@11, @20, @15, @227, @27, @21]];
+        NSMutableArray *theArray = [[NSMutableArray alloc] initWithArray:@[@104, @306, @706, @503, @909, @205, @606, @808, @201, @1001, @15005, @4, @32, @76, @53, @943, @2, @632, @8, @242, @465, @1232, @1745, @1228, @6820, @9280, @9081, @2298, @5416, @180, @3216, @624, @5703, @1547, @5420, @5668, @5877, @1394, @5878, @2066, @8827, @972, @448, @518, @697, @931, @301, @671, @54, @506, @280, @121, @628, @380, @60, @673, @105, @953, @316, @207, @304, @227, @520, @338, @780, @857, @812, @999, @681, @935, @821, @20, @72, @95, @18, @19, @94, @37, @77, @46, @67, @32, @90, @52, @49, @1, @58, @50, @91, @92, @8]];
         
         finalArray = [NSMutableArray new];
         
@@ -229,44 +230,51 @@ const BOOL DEMO_MERGE_SORT = TRUE;
     finalArray = [NSMutableArray new];
     
     while (tempArray.count > 0) {
-        NSMutableArray *array1 = tempArray[0];
-        NSMutableArray *array2 = tempArray[1];
-        NSMutableArray *sorted = [NSMutableArray new];
-        
-        while (array1.count !=0 && array2.count != 0) {
-            //If first object in array 1 has greater value
-            if ([array1[0] integerValue] > [array2[0] integerValue]) {
-                [sorted addObject:array2[0]];
-                [array2 removeObjectAtIndex:0];
+        if (tempArray.count > 1) {
+            NSMutableArray *array1 = tempArray[0];
+            NSMutableArray *array2 = tempArray[1];
+            NSMutableArray *sorted = [NSMutableArray new];
+            
+            while (array1.count !=0 && array2.count != 0) {
+                //If first object in array 1 has greater value
+                if ([array1[0] integerValue] > [array2[0] integerValue]) {
+                    [sorted addObject:array2[0]];
+                    [array2 removeObjectAtIndex:0];
+                }
+                //If first object in array 2 has greater value
+                else if ([array1[0] integerValue] < [array2[0] integerValue]) {
+                    [sorted addObject:array1[0]];
+                    [array1 removeObjectAtIndex:0];
+                }
+                //If first object in array 1 and array 2 are equal
+                else {
+                    [sorted addObject:array1[0]];
+                    [sorted addObject:array2[0]];
+                    [array1 removeObjectAtIndex:0];
+                    [array2 removeObjectAtIndex:0];
+                }
             }
-            //If first object in array 2 has greater value
-            else if ([array1[0] integerValue] < [array2[0] integerValue]) {
+            
+            //Remove remaining objects in array 1 (if any)
+            while (array1.count > 0) {
                 [sorted addObject:array1[0]];
                 [array1 removeObjectAtIndex:0];
             }
-            //If first object in array 1 and array 2 are equal
-            else {
-                [sorted addObject:array1[0]];
+            //Remove remaining objects in array 2 (if any)
+            while (array2.count > 0) {
                 [sorted addObject:array2[0]];
-                [array1 removeObjectAtIndex:0];
                 [array2 removeObjectAtIndex:0];
             }
+            
+            [tempArray removeObjectAtIndex:0];
+            [tempArray removeObjectAtIndex:0];
+            [finalArray addObject:sorted];
+            
+        } else {
+            [finalArray addObject:tempArray];
+            [tempArray removeObjectAtIndex:0];
         }
         
-        //Remove remaining objects in array 1 (if any)
-        while (array1.count > 0) {
-            [sorted addObject:array1[0]];
-            [array1 removeObjectAtIndex:0];
-        }
-        //Remove remaining objects in array 2 (if any)
-        while (array2.count > 0) {
-            [sorted addObject:array2[0]];
-            [array2 removeObjectAtIndex:0];
-        }
-        
-        [tempArray removeObjectAtIndex:0];
-        [tempArray removeObjectAtIndex:0];
-        [finalArray addObject:sorted];
         
     }
     
@@ -279,6 +287,7 @@ const BOOL DEMO_MERGE_SORT = TRUE;
     
 }
 
+#pragma mark - Memory Warnings
 
 - (void)didReceiveMemoryWarning
 {
