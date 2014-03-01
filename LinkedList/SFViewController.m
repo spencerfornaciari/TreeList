@@ -12,12 +12,15 @@
 #import "BinaryTree.h"
 #import "BinaryTreeNode.h"
 
-const BOOL DEMO_RADIX_SORT = TRUE;
+const BOOL DEMO_LINKED_LIST = FALSE;
+const BOOL DEMO_RADIX_SORT = FALSE;
+const BOOL DEMO_MERGE_SORT = TRUE;
 
 
 @interface SFViewController () {
     int n;
     int m;
+    NSMutableArray *finalArray;
 }
 
 @property (nonatomic) LinkedList *bestList;
@@ -39,7 +42,7 @@ const BOOL DEMO_RADIX_SORT = TRUE;
     self.storedRadixArray = [NSMutableArray new];
 
 
-    if(!DEMO_RADIX_SORT)
+    if(DEMO_LINKED_LIST)
     {
         //Linked List Demo
         self.bestList = [[LinkedList alloc] init];
@@ -102,10 +105,57 @@ const BOOL DEMO_RADIX_SORT = TRUE;
         
         [self radixSort:self.rawData];
         [self printArray:self.storedRadixArray];
+    } else if (DEMO_MERGE_SORT) {
+        NSMutableArray* theArray = [NSMutableArray arrayWithArray:@[@-4,@7,@-9,@1,@0,@5,@5,@3,@3,@6,@8,@11, @20, @15, @227, @27, @21]];
+        
+        finalArray = [NSMutableArray new];
+        
+        for(int i = 0 ; i < theArray.count ;  i = i+2){
+            if(i+1 != theArray.count){
+                if([theArray[i]integerValue] > [theArray[i+1]integerValue]){
+                    NSMutableArray *newArray = [NSMutableArray new];
+                    [newArray addObject:theArray[i+1]];
+                    [newArray addObject:theArray[i]];
+                    
+                    [finalArray addObject:newArray];
+                    //swap em
+                }
+                else{
+                    NSMutableArray *newArray = [NSMutableArray new];
+                    [newArray addObject:theArray[i]];
+                    [newArray addObject:theArray[i+1]];
+                    
+                    [finalArray addObject:newArray];
+                    // no swap
+                }
+            } else {
+                NSMutableArray *oddArray = finalArray[finalArray.count - 1];
+                
+                [finalArray removeObjectAtIndex:finalArray.count - 1];
+                NSNumber *num = theArray[i];
+                
+                for (int j = 0; j < 2; j++) {
+                    if ([oddArray[j] integerValue] < num.integerValue) {
+                        
+                    } else {
+                        [oddArray insertObject:num atIndex:j];
+                        break;
+                    }
+                }
+                [finalArray addObject:oddArray];
+            }
+        }
+        
+        NSLog(@"%@", finalArray);
+        
+        [self mergeArrays];
+
     }
 
 	// Do any additional setup after loading the view, typically from a nib.
 }
+
+#pragma mark - Radix Sort
 
 -(void)radixSort:(NSMutableArray *)array
 {
@@ -168,6 +218,65 @@ const BOOL DEMO_RADIX_SORT = TRUE;
     {
         NSLog(@"%@", num);
     }
+}
+
+#pragma mark - Merge Sort
+
+-(void)mergeArrays
+{
+    
+    NSMutableArray *tempArray = finalArray;
+    finalArray = [NSMutableArray new];
+    
+    while (tempArray.count > 0) {
+        NSMutableArray *array1 = tempArray[0];
+        NSMutableArray *array2 = tempArray[1];
+        NSMutableArray *sorted = [NSMutableArray new];
+        
+        while (array1.count !=0 && array2.count != 0) {
+            //If first object in array 1 has greater value
+            if ([array1[0] integerValue] > [array2[0] integerValue]) {
+                [sorted addObject:array2[0]];
+                [array2 removeObjectAtIndex:0];
+            }
+            //If first object in array 2 has greater value
+            else if ([array1[0] integerValue] < [array2[0] integerValue]) {
+                [sorted addObject:array1[0]];
+                [array1 removeObjectAtIndex:0];
+            }
+            //If first object in array 1 and array 2 are equal
+            else {
+                [sorted addObject:array1[0]];
+                [sorted addObject:array2[0]];
+                [array1 removeObjectAtIndex:0];
+                [array2 removeObjectAtIndex:0];
+            }
+        }
+        
+        //Remove remaining objects in array 1 (if any)
+        while (array1.count > 0) {
+            [sorted addObject:array1[0]];
+            [array1 removeObjectAtIndex:0];
+        }
+        //Remove remaining objects in array 2 (if any)
+        while (array2.count > 0) {
+            [sorted addObject:array2[0]];
+            [array2 removeObjectAtIndex:0];
+        }
+        
+        [tempArray removeObjectAtIndex:0];
+        [tempArray removeObjectAtIndex:0];
+        [finalArray addObject:sorted];
+        
+    }
+    
+    if (finalArray.count != 1) {
+        [self mergeArrays];
+        
+    } else  {
+        NSLog(@"Final: %@", finalArray[0]);
+    }
+    
 }
 
 
